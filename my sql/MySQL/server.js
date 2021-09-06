@@ -1,11 +1,9 @@
 const inquirer = require('inquirer');
 const orm = require("./config/orm");
 const cTable = require('console.table');
-
 console.clear();
 console.log('');
 start();
-
 async function fetchQuestionnaire(cb) {
     const { answer } = await inquirer.prompt({
         type: "list",
@@ -23,7 +21,6 @@ async function fetchQuestionnaire(cb) {
     });
     cb(answer);
 }
-
 async function fetchEmployeeName(cb) {
     const { firstName, lastName } = await inquirer.prompt([
         {
@@ -39,7 +36,6 @@ async function fetchEmployeeName(cb) {
     ]);
     cb(firstName, lastName );
 }
-
 async function fetchEmployeeRoleId(results, cb) {
     let choices = [];
     let idLookup = {};
@@ -47,7 +43,6 @@ async function fetchEmployeeRoleId(results, cb) {
         choices.push(result.title);
         idLookup[result.title] = result.id
     }
-
     let question = "What is the employee's role?";
     const { role } = await inquirer.prompt({
         type: "list",
@@ -57,7 +52,6 @@ async function fetchEmployeeRoleId(results, cb) {
     });
     cb(idLookup[role]);
 }
-
 async function fetchEmployeeManagerId(results, cb) {
     let choices = [];
     let idLookup = {};
@@ -66,7 +60,6 @@ async function fetchEmployeeManagerId(results, cb) {
         choices.push(name);
         idLookup[name] = result.id
     }
-
     let question = "Who is the employee's manager?";
     const { name } = await inquirer.prompt({
         type: "list",
@@ -76,7 +69,6 @@ async function fetchEmployeeManagerId(results, cb) {
     });
     cb(idLookup[name]);
 }
-
 async function fetchEmployeeId(results, cb) {
     let choices = [];
     let idLookup = {};
@@ -85,7 +77,6 @@ async function fetchEmployeeId(results, cb) {
         choices.push(name);
         idLookup[name] = result.id
     }
-
     let question = "Which employee would you like to remove?";
     const { name } = await inquirer.prompt({
         type: "list",
@@ -95,7 +86,6 @@ async function fetchEmployeeId(results, cb) {
     });
     cb(idLookup[name]);
 }
-
 async function start() {
     await fetchQuestionnaire((answer) => {
         switch (answer) {
