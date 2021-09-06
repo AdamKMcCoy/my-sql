@@ -1,15 +1,12 @@
 DROP DATABASE IF EXISTS employee_tracker;
 CREATE database employee_tracker;
-
 USE employee_tracker;
-
 CREATE TABLE department
 (
 	id int NOT NULL AUTO_INCREMENT,
 	name varchar(30) NOT NULL,
 	PRIMARY KEY (id)
 );
-
 CREATE TABLE role
 (
 	id int NOT NULL AUTO_INCREMENT,
@@ -19,7 +16,6 @@ CREATE TABLE role
 	PRIMARY KEY (id),
 	FOREIGN KEY (department_id) REFERENCES department(id)
 );
-
 CREATE TABLE manager
 (
 	id int NOT NULL AUTO_INCREMENT,
@@ -29,7 +25,6 @@ CREATE TABLE manager
 	FOREIGN KEY (role_id) REFERENCES role(id),
 	PRIMARY KEY (id)
 );
-
 CREATE TABLE employee (
 	id int NOT NULL AUTO_INCREMENT,
 	first_name VARCHAR(30) NOT NULL,
@@ -40,7 +35,3 @@ CREATE TABLE employee (
 	FOREIGN KEY (role_id) REFERENCES role(id),
 	FOREIGN KEY (manager_id) REFERENCES role(id)
 );
-
-
-
-
